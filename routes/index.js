@@ -3,17 +3,26 @@ import express from 'express';
 const router = express.Router();
 
 router.get('/', (req, res) => { // req - lo que enviamos, res - lo que express nos responde
-    res.render('inicio')
-})
-router.get('/nosotros', (req, res) => {
-    const viajes = 'Viaje a Alemania'
-
-    res.render('nosotros', {
-        viajes
+    res.render('inicio',{
+        pagina: 'Inicio'
     })
 })
-router.get('/contacto', (req, res) => {
-    res.send('Contacto')
+router.get('/nosotros', (req, res) => {
+    res.render('nosotros', {
+        pagina: 'Nosotros'
+    })
 })
+router.get('/viajes', (req, res) => {
+    res.render('viajes', {
+        pagina: 'Viajes'
+    })
+})
+
+router.get('/opiniones', (req, res) => {
+    res.render('opiniones', {
+        pagina: 'Opiniones'
+    })
+})
+
 
 export default router;

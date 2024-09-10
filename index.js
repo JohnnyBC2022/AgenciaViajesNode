@@ -14,6 +14,7 @@ app.set('view engine', 'pug')
 app.use((req, res, next)=>{
     const year = new Date();
     res.locals.currentYear = year.getFullYear();
+    res.locals.nombreSitio = 'Agencia de Viajes';
     return next(); // Al poner return fuerzas a que ejecute el siguiente Middleware
 })
 
