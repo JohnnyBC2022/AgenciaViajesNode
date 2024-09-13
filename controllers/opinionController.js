@@ -1,4 +1,6 @@
-import { Opinion } from '../models/Opinion.js'
+import { Opinion } from '../models/Opinion.js';
+
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const guardarOpinion = async (req, res) => {
     const { nombre, email, mensaje } = req.body
@@ -9,7 +11,9 @@ const guardarOpinion = async (req, res) => {
         errores.push({ mensaje: 'El nombre está vacío' })
     }
     if (email.trim() === '') {
-        errores.push({ mensaje: 'El correo electrónico está vacío' })
+        errores.push({ mensaje: 'El correo electrónico está vacío' });
+    } else if (!emailRegex.test(email)) {
+        errores.push({ mensaje: 'El correo electrónico no es válido' });
     }
     if (mensaje.trim() === '') {
         errores.push({ mensaje: 'El mensaje está vacío' })
