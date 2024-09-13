@@ -1,19 +1,21 @@
-const guardarOpinion = (req,res)=>{
-    const { nombre, email, mensaje} = req.body
+import { Opinion } from '../models/Opinion.js'
+
+const guardarOpinion = async (req, res) => {
+    const { nombre, email, mensaje } = req.body
 
     const errores = []
 
-    if(nombre.trim()===''){
-        errores.push({mensaje: 'El nombre está vacío'})
+    if (nombre.trim() === '') {
+        errores.push({ mensaje: 'El nombre está vacío' })
     }
-    if(email.trim()===''){
-        errores.push({mensaje: 'El correo electrónico está vacío'})
+    if (email.trim() === '') {
+        errores.push({ mensaje: 'El correo electrónico está vacío' })
     }
-    if(mensaje.trim()===''){
-        errores.push({mensaje: 'El mensaje está vacío'})
+    if (mensaje.trim() === '') {
+        errores.push({ mensaje: 'El mensaje está vacío' })
     }
 
-    if(errores.length > 0) {
+    if (errores.length > 0) {
         // Mostrar la vista con errores
         res.render('opiniones', {
             pagina: 'opiniones',
@@ -22,10 +24,22 @@ const guardarOpinion = (req,res)=>{
             email,
             mensaje
         })
-    } else {
-        //Almacenarlo en la base de datos
-        
+
+
     }
+    //Almacenarlo en la base de datos
+    try {
+        await Opinion.create({
+            nombre,
+            email,
+            mensaje
+        });
+        // Redirecciona después de guardar correctamente
+        res.redirect('/opiniones')
+    } catch (error) {
+        console.log(error)
+    }
+
 
 }
 

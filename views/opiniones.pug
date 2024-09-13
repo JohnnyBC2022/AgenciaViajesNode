@@ -14,15 +14,14 @@ block contenido
 
             .row.justify-content-center.col
                 .col-md-8
-                    form.d-grid(action="/opiniones" method="Post")
+                    form.d-grid(action="/opiniones" method="Post" autocomplete="off")
                         .form-group
                             label(for="nombre") Nombre
-                            input#nombre(type="text", placeholder="Escribe tu nombre...", name="nombre", class="form-control", value="nombre")
+                            input#nombre(type="text", placeholder="Escribe tu nombre...", name="nombre", class="form-control", value=nombre || '')
                         .form-group
                             label(for="email") Correo electrónico
-                            input#email(type="text", placeholder="Escribe tu email...", name="email", class="form-control", value="email")
+                            input#email(type="text", placeholder="Escribe tu email...", name="email", class="form-control", value=email || '')
                         .form-group
                             label(for="mensaje") Mensaje
-                            textarea#mensaje(type="text", placeholder="Escribe tu mensaje...", name="mensaje", class="form-control", rows = 3,)= mensaje
-                        
+                            textarea#mensaje(placeholder="Escribe tu mensaje...", name="mensaje", class="form-control", rows=3)= mensaje || ''
                         input.btn.btn-success.mt-4(type="submit", value="Enviar comentario")
