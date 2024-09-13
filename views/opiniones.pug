@@ -4,20 +4,25 @@ block contenido
     main.container.mt-5
         h1.text-center.mt-5 #{pagina}
         .row
+            .col-md-12
 
-            h2.d-block.w-100.text-center Déjanos tu opinión
+                h2.d-block.w-100.text-center Déjanos tu opinión
+
+                if(errores)
+                    each error in errores
+                        .alert.col.alert-danger.text-center= error.mensaje
 
             .row.justify-content-center.col
                 .col-md-8
-                    form.d-grid(action="" method="Post")
+                    form.d-grid(action="/opiniones" method="Post")
                         .form-group
                             label(for="nombre") Nombre
-                            input#nombre(type="text", placeholder="Escribe tu nombre...", name="nombre", class="form-control")
+                            input#nombre(type="text", placeholder="Escribe tu nombre...", name="nombre", class="form-control", value="nombre")
                         .form-group
                             label(for="email") Correo electrónico
-                            input#email(type="text", placeholder="Escribe tu email...", name="email", class="form-control")
+                            input#email(type="text", placeholder="Escribe tu email...", name="email", class="form-control", value="email")
                         .form-group
                             label(for="mensaje") Mensaje
-                            textarea#mensaje(type="text", placeholder="Escribe tu mensaje...", name="mensaje", class="form-control", rows = 3)
+                            textarea#mensaje(type="text", placeholder="Escribe tu mensaje...", name="mensaje", class="form-control", rows = 3,)= mensaje
                         
                         input.btn.btn-success.mt-4(type="submit", value="Enviar comentario")

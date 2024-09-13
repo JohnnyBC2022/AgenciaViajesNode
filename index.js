@@ -24,6 +24,9 @@ app.use((req, res, next) => {
     return next(); // Al poner return fuerzas a que ejecute el siguiente Middleware
 })
 
+// Agregar body parser (para poder leer la información del formulario). Es importante que la información esté registrada antes que las rutas. Recuerda que el middleware se ejecuta de forma secuencial
+app.use(express.urlencoded({extended: true}));
+
 // Definir la carpeta pública
 app.use(express.static('public'));
 
@@ -33,3 +36,4 @@ app.use('/', router)
 app.listen(port, () => {
     console.log(`El Servidor está funcionando en el puerto ${port}`)
 })
+
