@@ -16,13 +16,17 @@ const guardarOpinion = async (req, res) => {
     }
 
     if (errores.length > 0) {
+        // Mostrar opiniones anteriores
+        const opiniones = await Opinion.findAll();
+
         // Mostrar la vista con errores
         res.render('opiniones', {
             pagina: 'opiniones',
             errores,
             nombre,
             email,
-            mensaje
+            mensaje,
+            opiniones
         })
 
 

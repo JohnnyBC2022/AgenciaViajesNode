@@ -3,9 +3,20 @@ extends ./layout/index
 block contenido
     main.container.mt-5
         h1.text-center.mt-5 #{pagina}
+        blockquote.text-center Estas son las opiniones de nuestros clientes
+        .row.testimoniales
+            each opinion in opiniones
+                .col-md-6.col-lg-4.mb-4
+                    .card
+                        .card-body
+                            blockquote.blockquote
+                            p.mb-0
+                                | #{opinion.mensaje}
+                            footer.blockquote-footer
+                                | #{opinion.nombre}
+
         .row
             .col-md-12
-
                 h2.d-block.w-100.text-center Déjanos tu opinión
 
                 if(errores)

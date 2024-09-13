@@ -1,4 +1,5 @@
-import {Viaje} from '../models/Viaje.js'
+import { Viaje } from '../models/Viaje.js'
+import { Opinion } from '../models/Opinion.js'
 
 const paginaInicio = (req, res) => { // req - lo que enviamos, res - lo que express nos responde
     res.render('inicio', {
@@ -24,24 +25,31 @@ const paginaViajes = async (req, res) => {
     })
 }
 
-const paginaOpiniones = (req, res) => {
-    res.render('opiniones', {
-        pagina: 'Opiniones'
-    })
+const paginaOpiniones = async (req, res) => {
+    try {
+        const opiniones = await Opinion.findAll();
+        res.render('opiniones', {
+            pagina: 'Opiniones',
+            opiniones
+        })
+    } catch (error) {
+        console.log(error)
+    }
+
 }
 
 // Muestra un viaje por su slug
-const paginaDetalleViaje = async (req, res) =>{
-    const { slug} = req.params;
+const paginaDetalleViaje = async (req, res) => {
+    const { slug } = req.params;
 
-    try{
-        const viaje = await Viaje.findOne({where: {slug}});
+    try {
+        const viaje = await Viaje.findOne({ where: { slug } });
 
-        res.render('viaje',{
+        res.render('viaje', {
             pagina: 'Información Viaje',
             viaje
         })
-    } catch(error){
+    } catch (error) {
         console.log(error)
     }
 }
