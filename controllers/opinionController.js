@@ -24,7 +24,7 @@ const guardarOpinion = async (req, res) => {
         const opiniones = await Opinion.findAll();
 
         // Mostrar la vista con errores
-        res.render('opiniones', {
+        return res.render('opiniones', {
             pagina: 'opiniones',
             errores,
             nombre,
@@ -47,8 +47,6 @@ const guardarOpinion = async (req, res) => {
     } catch (error) {
         console.log(error)
     }
-
-
 }
 
 export {

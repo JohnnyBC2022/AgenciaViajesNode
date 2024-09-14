@@ -1,7 +1,8 @@
 // const express = require('express'); es la notación antigua de commonJS
 import express from 'express';
 import router from './routes/index.js';
-import db from './config/db.js'
+import db from './config/db.js';
+
 
 const app = express();
 
